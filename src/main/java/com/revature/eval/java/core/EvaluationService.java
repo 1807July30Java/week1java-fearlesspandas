@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.io.*;
+
 public class EvaluationService {
 
 	/**
@@ -318,22 +319,18 @@ public class EvaluationService {
 			int first = 0;
 			int last = sortedList.size();
 			int currentind =(int) Math.ceil(last/2);
-			T current = sortedList.get(currentind);
-				Comparable<T> ct = (Comparable<T>) t;
-				while(!current.equals(ct)) {
-					if(t instanceof Comparable) {
-						if(((Comparable<T>) ct).compareTo(current) < 0) {
+				Comparable ct = (Comparable) t;
+				while(!sortedList.get(currentind).equals(ct)) {
+						if(ct.compareTo(sortedList.get(currentind)) < 0) {
 							last -= (int) Math.ceil((last-first)/2);
-							current = sortedList.get(last);
+              currentind = (int)(last-first)/2;
 						}
 						else {
 							first += (int)Math.floor(last - first)/2;
+              currentind = (int)(last-first)/2;
 						}
-					}
-
 				}
-
-			return last;
+			return currentind;
 		}
 
 		public BinarySearch(List<T> sortedList) {
@@ -663,6 +660,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return 0;
 	}
+
 
 
 }
