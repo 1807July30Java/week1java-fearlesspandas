@@ -233,6 +233,7 @@ public class EvaluationService {
 	 */
 	public String cleanPhoneNumber(String string) throws IllegalArgumentException{
 		// TODO Write an implementation for this method declaration
+    string = string.trim();
 		ArrayList<Integer> pnA = new ArrayList<Integer>(0);
 		int[] pnraw = new int[string.length()];
 		//converts characters to integer values
