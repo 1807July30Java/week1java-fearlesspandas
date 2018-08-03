@@ -251,7 +251,7 @@ public class EvaluationService {
 				if(first) {
 					first = false;
 					//if not NANP number
-					//if(n == 1) {throw new IllegalArgumentException();}
+					if(n == 1) {throw new IllegalArgumentException();}
 				}
 			}
 		}
@@ -331,9 +331,7 @@ public class EvaluationService {
 					}
 
 				}
-			//}catch (ClassCastException e) {
-			//	System.out.println(e.getMessage());
-			//}
+
 			return last;
 		}
 
