@@ -5,19 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.io.*;
-import java.util.Collections;
-import java.util.Arrays;
+
 public class EvaluationService {
 
-  public static void main(String[] args){
-    List<String> sortedList = Collections.unmodifiableList(Arrays.asList("1", "3", "4", "6", "8", "9", "11"));
-		EvaluationService.BinarySearch<String> search = new EvaluationService.BinarySearch<>(sortedList);
-    System.out.println(search.indexOf("6"));
-    List<Integer> sortedList2 = Collections.unmodifiableList(Arrays.asList(1, 3, 4, 6, 8, 9, 11));
-
-		EvaluationService.BinarySearch<Integer> search2 = new EvaluationService.BinarySearch<>(sortedList2);
-    System.out.println(search2.indexOf(1));
-  }
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
