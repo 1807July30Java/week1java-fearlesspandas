@@ -5,9 +5,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.io.*;
+import java.util.HashMap;
 
 public class EvaluationService {
-
+ /*
+  public static void main(String[] args){
+    HashMap<String,Integer> m = new HashMap<String,Integer>();
+    System.out.println(wordCount("hello hello \nhello world,world").get("world"));
+  }
+  */
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
@@ -273,7 +279,12 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+    String[] W = string.split("[^a-zA-Z]+");
+    Map<String,Integer> M = new HashMap<String,Integer>();
+    for(String w:W){
+      M.put(w,M.getOrDefault(w,0) + 1);
+    }
+		return M;
 	}
 
 	/**
