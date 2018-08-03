@@ -5,9 +5,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.io.*;
-
+import java.util.Collections;
+import java.util.Arrays;
 public class EvaluationService {
 
+  public static void main(String[] args){
+    List<String> sortedList = Collections.unmodifiableList(Arrays.asList("1", "3", "4", "6", "8", "9", "11"));
+		EvaluationService.BinarySearch<String> search = new EvaluationService.BinarySearch<>(sortedList);
+    System.out.println(search.indexOf("6"));
+    List<Integer> sortedList2 = Collections.unmodifiableList(Arrays.asList(1, 3, 4, 6, 8, 9, 11));
+
+		EvaluationService.BinarySearch<Integer> search2 = new EvaluationService.BinarySearch<>(sortedList2);
+    System.out.println(search2.indexOf(1));
+  }
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
@@ -317,17 +327,17 @@ public class EvaluationService {
 			// TODO Write an implementation for this method declaration
 			int Size = sortedList.size()/2;
 			int first = 0;
-			int last = sortedList.size();
+			int last = sortedList.size()-1;
 			int currentind =(int) Math.ceil(last/2);
 				Comparable ct = (Comparable) t;
 				while(!sortedList.get(currentind).equals(ct)) {
 						if(ct.compareTo(sortedList.get(currentind)) < 0) {
-							last -= (int) Math.ceil((last-first)/2);
-              currentind = (int)(last-first)/2;
+							last -= (int) Math.floor((last-first)/2.0);
+              currentind = first + (int)(last-first)/2;
 						}
 						else {
-							first += (int)Math.floor(last - first)/2;
-              currentind = (int)(last-first)/2;
+							first += (int)Math.ceil((last - first)/2.0);
+              currentind = first + (int)(last-first)/2;
 						}
 				}
 			return currentind;
