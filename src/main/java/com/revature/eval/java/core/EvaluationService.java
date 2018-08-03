@@ -8,12 +8,11 @@ import java.io.*;
 import java.util.HashMap;
 
 public class EvaluationService {
- /*
+/*
   public static void main(String[] args){
-    HashMap<String,Integer> m = new HashMap<String,Integer>();
-    System.out.println(wordCount("hello hello \nhello world,world").get("world"));
+    System.out.println(toPigLatin("quick fast run"));
   }
-  */
+*/
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
@@ -279,13 +278,13 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
-    String[] W = string.split("[^a-zA-Z]+");
-    Map<String,Integer> M = new HashMap<String,Integer>();
-    for(String w:W){
-      M.put(w,M.getOrDefault(w,0) + 1);
-    }
-		return M;
-	}
+      String[] W = string.split("[^a-zA-Z]+");
+      Map<String,Integer> M = new HashMap<String,Integer>();
+      for(String w:W){
+        M.put(w,M.getOrDefault(w,0) + 1);
+      }
+		  return M;
+	 }
 
 	/**
 	 * 7. Implement a binary search algorithm.
@@ -378,7 +377,27 @@ public class EvaluationService {
 	 */
 	public String toPigLatin(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+    String[] W = string.split("[^a-zA-Z]+"); //splits multiple words
+    for(int i = 0; i < W.length; i ++){
+        W[i] = W[i].toLowerCase();
+        String[] S;
+        if(W[i].charAt(0) == 'y'){
+        S = W[i].split("[aeiouAEIOU]");
+        }
+        else{
+          S = W[i].split("[aeiouyAEIOUY]");
+        }
+        //if first is a consonant
+        if(W[i].startsWith(S[0])){
+          W[i] = W[i].replaceFirst(S[0],"") + S[0] + "ay";
+        }
+        else{
+          W[i] += "ay";
+        }
+    }
+    String retString = "";
+    for(String w:W){retString +=  w + " " ;}
+		return retString;
 	}
 
 	/**
