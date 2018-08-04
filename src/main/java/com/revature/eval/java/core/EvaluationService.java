@@ -10,8 +10,7 @@ import java.util.HashMap;
 public class EvaluationService {
 /*
   public static void main(String[] args){
-      RotationalCipher R = new RotationalCipher(13);
-      System.out.println(R.rotate("The quick brown fox jumps over the lazy dog."));
+      System.out.println(calculateNthPrime(1));
   }
 */
 	/**
@@ -446,6 +445,7 @@ public class EvaluationService {
   public static boolean isPrime(long l){
     int cap = (int) Math.ceil(Math.sqrt(l)); // above this no factors will be found
     boolean isp = true;
+    if(l == 1){return false;}
     for(int i = 2; i <= Math.min(cap,l-1);i++){
       if((double)l/(double)i % 1 == 0){
         isp = false;
@@ -511,7 +511,9 @@ public class EvaluationService {
       int CapStart = 65;
       int LowStart = 97;
       for(int i = 0; i < string.length() ;i ++){
+        //if letter and not punctuation
         if(CapStart -1<(int)string.charAt(i) && (int)string.charAt(i)  < LowStart + 26){
+          //if lowercase
           if(string.charAt(i) == string.toLowerCase().charAt(i) ){
             string = string.substring(0,i) + string.substring(i).replaceFirst(Character.toString(string.charAt(i)), Character.toString((char) (LowStart + (((int)string.charAt(i) - LowStart + key)%26))));
           }
@@ -537,9 +539,18 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-	public int calculateNthPrime(int i) {
+	public int calculateNthPrime(int i) throws IllegalArgumentException{
 		// TODO Write an implementation for this method declaration
-		return 0;
+    int nprimes = 0;
+    int t = 1;
+    if(i < 1){throw new IllegalArgumentException();}
+    while(nprimes < i){
+      if (isPrime(t)){
+        nprimes++;
+      }
+      t++;
+    }
+		return t-1;
 	}
 
 	/**
