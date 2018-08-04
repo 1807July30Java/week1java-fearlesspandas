@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class EvaluationService {
 /*
   public static void main(String[] args){
-    System.out.println(toPigLatin("quick fast run"));
+      System.out.println(calculatePrimeFactorsOf(2L));
   }
 */
 	/**
@@ -430,9 +430,33 @@ public class EvaluationService {
 	 * @param l
 	 * @return
 	 */
+  public static boolean isPrime(long l){
+    int cap = (int) Math.ceil(Math.sqrt(l)); // above this no factors will be found
+    boolean isp = true;
+    for(int i = 2; i <= Math.min(cap,l-1);i++){
+      if((double)l/(double)i % 1 == 0){
+        isp = false;
+      }
+    }
+    return isp;
+  }
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
-		return null;
+    int cap = (int) Math.ceil(l/2.0); // above this no factors will be found
+    ArrayList<Long> F = new ArrayList<Long>(0);
+    ArrayList<Long> temp = new ArrayList<Long>(0);
+    for(int i = 2; i <= cap;i++){
+      if((double)l/(double)i % 1 == 0){
+        //temp = (ArrayList<Long>)calculatePrimeFactorsOf((long)i);
+        if(isPrime((long)i)){
+          F.add((Long)(long)i);
+        }
+      }
+    }
+    if(F.size() == 0){
+      F.add(l);
+    }
+		return F;
 	}
 
 	/**
