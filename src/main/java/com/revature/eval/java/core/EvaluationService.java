@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class EvaluationService {
 /*
   public static void main(String[] args){
-      System.out.println(calculatePrimeFactorsOf(2L));
+      System.out.println(isArmstrongNumber(9474));
   }
 */
 	/**
@@ -417,7 +417,19 @@ public class EvaluationService {
 	 */
 	public boolean isArmstrongNumber(int input) {
 		// TODO Write an implementation for this method declaration
-		return false;
+    ArrayList<Integer> digits = new ArrayList<Integer>(0);
+    int result = 0;
+    int oinput = input;
+    double cap = Math.log10(input);
+    for(int i = 0; (double)i <=cap ;i++){
+        digits.add(input%10);
+        input -= input%10;
+        input = input/10;
+    }
+    for(int i:digits){
+      result += (int)Math.pow(i,(int)Math.ceil(cap));
+    }
+		return result == oinput;
 	}
 
 	/**
