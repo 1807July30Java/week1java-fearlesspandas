@@ -11,7 +11,7 @@ public class EvaluationService {
 /*
   public static void main(String[] args){
 
-      System.out.println(isValidIsbn("3-598-2K507-0"));
+      System.out.println(isPangram("five boxing wizards jump quickly at it"));
   }
 */
 	/**
@@ -688,7 +688,12 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
     int lowstart = 65;
     string = string.toLowerCase();
-		return false;
+    string = string.replaceAll("[^a-z]+","");
+    HashMap<Character,Integer> H = new HashMap<Character,Integer>();
+    for(int i = 0; i < string.length(); i++){
+      H.putIfAbsent(string.charAt(i),1);
+    }
+		return H.size() == 26;
 	}
 
 	/**
