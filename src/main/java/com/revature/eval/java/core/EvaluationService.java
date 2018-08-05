@@ -1,17 +1,20 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.io.*;
 import java.util.HashMap;
 
+
 public class EvaluationService {
 /*
   public static void main(String[] args){
-
-      System.out.println(isPangram("five boxing wizards jump quickly at it"));
+      int[] n = {5,25};
+      int k = 51;
+      System.out.println(getSumOfMultiples(k,n));
   }
 */
 	/**
@@ -704,9 +707,10 @@ public class EvaluationService {
 	 * @param given
 	 * @return
 	 */
-	public Temporal getGigasecondDate(Temporal given) {
+	public static Temporal getGigasecondDate(Temporal given) {
 		// TODO Write an implementation for this method declaration
-		return null;
+    Temporal T = ((Temporal)given).plus((long)1000000000,ChronoUnit.SECONDS);
+		return T;
 	}
 
 	/**
@@ -724,7 +728,19 @@ public class EvaluationService {
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+    HashMap<Integer,Boolean> H = new HashMap<Integer,Boolean>();
+    int sum = 0;
+    for(int n:set){
+      int mult = 1;
+      while(mult*n < i){
+        if(null == H.putIfAbsent(mult*n,true)){
+          sum +=mult*n;
+          //H.put(mult*n,true);
+        }
+        mult++;
+      }
+    }
+		return sum;
 	}
 
 	/**
