@@ -14,7 +14,7 @@ public class EvaluationService {
   public static void main(String[] args){
       int[] n = {5,25};
       int k = 51;
-      System.out.println(getSumOfMultiples(k,n));
+      System.out.println(isLuhnValid("055 444 285"));
   }
 */
 	/**
@@ -781,7 +781,21 @@ public class EvaluationService {
 	 */
 	public boolean isLuhnValid(String string) {
 		// TODO Write an implementation for this method declaration
-		return false;
+    string = string.trim();
+    string = string.replaceAll(" ","");
+    if(string.length()<2){return false;}
+    if (string != string.replaceAll("[^0-9]+","")){return false;}
+    int[] digits = new int[string.length()];
+    for(int i = 0; i < string.length(); i++){
+      digits[i] = Character.getNumericValue(string.charAt(i));
+    }
+    for(int i = digits.length - 2; i >0;i-=2){
+      digits[i] *=2;
+      if(digits[i] > 9){digits[i] -=9;}
+    }
+    int sum = 0;
+    for(int n : digits){sum+=n;}
+		return sum%10 == 0;
 	}
 
 	/**
