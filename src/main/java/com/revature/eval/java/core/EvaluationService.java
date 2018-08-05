@@ -14,7 +14,7 @@ public class EvaluationService {
   public static void main(String[] args){
       int[] n = {5,25};
       int k = 51;
-      System.out.println(isLuhnValid("055 444 285"));
+      System.out.println(solveWordProblem("What is 33 divided by -3?"));
   }
 */
 	/**
@@ -827,7 +827,20 @@ public class EvaluationService {
 	 */
 	public int solveWordProblem(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+    string = string.replace('?',' ');
+    String[] formula = string.split(" ");
+    String operation = formula[3];
+    int result = 0;
+    if(operation.equals("plus")){
+        result = Integer.parseInt(formula[2]) + Integer.parseInt(formula[4]);
+    }else if(operation.equals("minus")){
+        result = Integer.parseInt(formula[2]) - Integer.parseInt(formula[4]);
+    }else if(operation.equals("divided")){
+        result = Integer.parseInt(formula[2]) / Integer.parseInt(formula[5]);
+    }else if(operation.equals("multiplied")){
+        result = Integer.parseInt(formula[2]) * Integer.parseInt(formula[5]);
+    }
+		return result;
 	}
 
 
