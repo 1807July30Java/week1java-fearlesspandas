@@ -8,12 +8,12 @@ import java.io.*;
 import java.util.HashMap;
 
 public class EvaluationService {
-
+/*
   public static void main(String[] args){
-      AtbashCipher A = new AtbashCipher();
-      System.out.println(A.decode("zmlyh gzxov rhlug vmzhg vkkrm thglm v"));
-  }
 
+      System.out.println(isValidIsbn("3-598-2K507-0"));
+  }
+*/
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
@@ -654,7 +654,21 @@ public class EvaluationService {
 	 */
 	public boolean isValidIsbn(String string) {
 		// TODO Write an implementation for this method declaration
-		return false;
+    string = string.trim();
+    string = string.replaceAll("[^0-9X]","");
+    int x =0;
+    if(string.length() != 10){
+        return false;
+      }
+    for(int i = 0 ; i < string.length(); i ++){
+      if(string.charAt(i) != 'X'){
+        x+=Character.getNumericValue(string.charAt(i)) * (10-i);
+      }
+      else{
+        x += 10*(10-i);
+      }
+    }
+		return x%11 == 0;
 	}
 
 	/**
