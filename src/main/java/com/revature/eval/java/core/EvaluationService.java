@@ -8,11 +8,12 @@ import java.io.*;
 import java.util.HashMap;
 
 public class EvaluationService {
-/*
+
   public static void main(String[] args){
-      System.out.println(calculateNthPrime(1));
+      AtbashCipher A = new AtbashCipher();
+      System.out.println(A.decode("zmlyh gzxov rhlug vmzhg vkkrm thglm v"));
   }
-*/
+
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
@@ -587,7 +588,24 @@ public class EvaluationService {
 		 */
 		public static String encode(String string) {
 			// TODO Write an implementation for this method declaration
-			return null;
+      string = string.trim();
+      string = string.toUpperCase();
+      string = string.replaceAll("[^A-Z1-9]+","");
+      int lowstart = 65;
+      for(int i = 0; i < string.length(); i++){
+        if(64<(int)string.charAt(i)&&(int)string.charAt(i)<91){
+          char newChar = (char)  ( 25- ((int)string.charAt(i) - lowstart)  + lowstart);
+          string = string.substring(0,i) + string.substring(i).replaceFirst(Character.toString(string.charAt(i)),Character.toString(newChar));
+        }
+      }
+      String retString = "";
+      for(int i = 0; i < string.length();i++){
+        if(i%5 == 0 && i > 0){
+          retString = retString.concat(" ");
+        }
+        retString = retString.concat(Character.toString(string.charAt(i)));
+      }
+			return retString.toLowerCase();
 		}
 
 		/**
@@ -598,7 +616,17 @@ public class EvaluationService {
 		 */
 		public static String decode(String string) {
 			// TODO Write an implementation for this method declaration
-			return null;
+      string = string.trim();
+      string = string.toUpperCase();
+      string = string.replaceAll("[^A-Z1-9]+","");
+      int lowstart = 65;
+      for(int i = 0; i < string.length(); i++){
+        if(64<(int)string.charAt(i)&&(int)string.charAt(i)<91){
+          char newChar = (char)  ( 25- ((int)string.charAt(i) - lowstart)  + lowstart);
+          string = string.substring(0,i) + string.substring(i).replaceFirst(Character.toString(string.charAt(i)),Character.toString(newChar));
+        }
+      }
+			return string.toLowerCase();
 		}
 	}
 
@@ -644,6 +672,8 @@ public class EvaluationService {
 	 */
 	public boolean isPangram(String string) {
 		// TODO Write an implementation for this method declaration
+    int lowstart = 65;
+    string = string.toLowerCase();
 		return false;
 	}
 
