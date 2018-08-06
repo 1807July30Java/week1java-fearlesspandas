@@ -7,14 +7,16 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.io.*;
 import java.util.HashMap;
-
-
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 public class EvaluationService {
 /*
   public static void main(String[] args){
       int[] n = {5,25};
       int k = 51;
-      System.out.println(solveWordProblem("What is 33 divided by -3?"));
+      LocalDateTime D = LocalDateTime.of(2015, Month.JANUARY, 24, 22, 0, 0);
+      System.out.println(getGigasecondDate(LocalDate.of(1977, Month.JUNE, 13)));
   }
 */
 	/**
@@ -464,7 +466,6 @@ public class EvaluationService {
     ArrayList<Long> temp = new ArrayList<Long>(0);
     for(int i = 2; i <= cap;i++){
       if((double)l/(double)i % 1 == 0){
-        //temp = (ArrayList<Long>)calculatePrimeFactorsOf((long)i);
         if(isPrime((long)i)){
           F.add((Long)(long)i);
         }
@@ -709,7 +710,11 @@ public class EvaluationService {
 	 */
 	public static Temporal getGigasecondDate(Temporal given) {
 		// TODO Write an implementation for this method declaration
-    Temporal T = ((Temporal)given).plus((long)1000000000,ChronoUnit.SECONDS);
+    if (given instanceof LocalDateTime){
+      return given.plus((long)1000000000,ChronoUnit.SECONDS);
+    }
+    LocalDateTime S = ((LocalDate)given).atStartOfDay();
+    Temporal T = S.plus((long)1000000000,ChronoUnit.SECONDS);
 		return T;
 	}
 
